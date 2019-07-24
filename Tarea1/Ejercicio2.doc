@@ -1,0 +1,42 @@
+// Programa para imprimir todos los primos menores o iguales a n
+// usando Criba de Eratóstenes 
+
+public class CribaEratostenes {
+
+        void cribadeEratostenes(int num)
+        {
+            
+            boolean primo[] = new boolean[num+1];
+
+            for(int i=0; i<num; i++)
+                primo[i] = true;
+
+            for(int p = 2; p*p <=num; p++)
+            {
+                // Si el primo[p] no cambia, entonces es primo
+                if(primo[p] == true)
+                {
+                    // Actualiza todos los múltiplos de p
+                    for(int i = p*2; i <= num; i += p)
+                        primo[i] = false;
+                }
+            }
+
+            // Imprimir todos los números primos
+            for(int i = 2; i <= num; i++)
+            {
+                if(primo[i] == true)
+                    System.out.print(i + " ");
+            }
+        }
+
+        public static void main(String[] args) {
+            int n = 30;
+            System.out.print("Los siguientes son los 
+            números primos ");
+            System.out.println("menores o igual que " + n);
+            CribaEratostenes g = new CribaEratostenes();
+            g.cribadeEratostenes(n);
+        }
+    }
+
